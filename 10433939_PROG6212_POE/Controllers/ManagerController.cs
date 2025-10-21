@@ -54,7 +54,37 @@ namespace _10433939_PROG6212_POE.Controllers
                 return RedirectToAction(nameof(Index));
             }
         }
+        // POST: /Manager/Approve - CREATES REVIEW RECORD
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Approve(int id, string? comments)
+        {
+            try
+            {
+                string reviewedBy = "Academic Manager";
+                string reviewComments = string.IsNullOrWhiteSpace(comments)
+                    ? "Approved for claim"
+                    : comments;
 
+                var success = ClaimData.UpdateClaimStatus(id, ClaimStatus.Approved, reviewedBy, reviewComments);
+
+                if (success)
+                {
+                    TempData["Success"] = "Claim approved successfully!";
+                }
+                else
+                {
+                    TempData["Error"] = "Claim not found.";
+                }
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = "Error approving claim.";
+                return RedirectToAction(nameof(Index));
+            }
+        }
         // POST: /Manager/Decline - CREATES REVIEW RECORD
         [HttpPost]
         [ValidateAntiForgeryToken]

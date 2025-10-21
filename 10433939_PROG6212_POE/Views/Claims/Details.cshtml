@@ -11,31 +11,54 @@ Layout = "~/Views/Shared/_Layout.cshtml";
 	</ol>
 </nav>
 
-<div class="row">
-	<div class="col-lg-8">
-		<div class="card">
-			<div class="card-header d-flex justify-content-between">
-				<h4>Clean Code : A Handbook of Agile Software Craftsmanship</h4>
-				<span class="badge bg-warning">Pending Review</span>
-			</div>
-			<div class="card-body">
-				<div class="row mb-3">
-					<div class="col-sm-3"><strong>LecturerName</strong></div>
-					<div class="col-sm-9">Robert c. Martin</div>
+@if (TempData["Error"] != null)
+{
+	<div class="alert alert-danger">@TempData["Error"]</div>
+}
+	<div class="row">
+		<div class="col-lg-8">
+			<div class="card">
+				<div class="card-header d-flex justify-content-between">
+					<h4>@Model.LecturerName</h4>
+					@if (Model.Status == _10433939_PROG6212_POE.Models.ClaimStatus.Pending)
+					{
+						<span class="badge bg-warning">Pending Review</span>
+					}
+					else if (Model.Status == _10433939_PROG6212_POE.Models.ClaimStatus.Approved)
+					{
+						<span class="badge bg-success">Approved</span>
+					}
+					else if (Model.Status == _10433939_PROG6212_POE.Models.ClaimStatus.Verified)
+					{
+						<span class="badge bg-success-subtle">Verified</span>
+					}
+					else
+					{
+						<span class="badge bg-danger">Declined</span>
+					}
 				</div>
-				<div class="row mb-3">
-					<div class="col-sm-3"><strong>HoursWorked</strong></div>
-					<div class="col-sm-9">Programming</div>
-				</div>
-				<div class="row mb-3">
-					<div class="col-sm-3"><strong>HourlyRate</strong></div>
-					<div class="col-sm-9">985-015452556485</div>
-				</div>
-				<div class="row mb-3">
-					<div class="col-sm-3"><strong>AdditionalNotes</strong></div>
-					<div class="col-sm-9">
-						A comprhensive guide to writing clean, readable, and maintainable code.
+				<div class="card-body">
+					<div class="row mb-3">
+						<div class="col-sm-3"><strong>Lecturer Name</strong></div>
+						<div class="col-sm-9">@Model.LecturerName</div>
 					</div>
+					<div class="row mb-3">
+						<div class="col-sm-3"><strong>Hours Worked</strong></div>
+						<div class="col-sm-9">@Model.HoursWorked</div>
+					</div>
+					<div class="row mb-3">
+						<div class="col-sm-3"><strong>Hourly Rate</strong></div>
+						<div class="col-sm-9">@Model.HourlyRate</div>
+					</div>
+					<div class="row mb-3">
+						<div class="col-sm-3"><strong>Additional Notes</strong></div>
+						<div class="col-sm-9">
+							@Model.AdditionalNotes
+						</div>
+					</div>
+					<div"row mb-3">
+						<div class="col-sm-3"><strong>Submitted</strong></div>
+						<div class="col-sm-9">@Model.SubmittedDate.ToString("MM-dd-yyyy")</div>
 				</div>
 			</div>
 		</div>
@@ -44,25 +67,39 @@ Layout = "~/Views/Shared/_Layout.cshtml";
 	<div class="col-lg-4">
 		<div class="card">
 			<div class="card-header">
-				<h5>Supporting Documents</h5>
+				<h5>Supporting Documents (@Model.Documents.Count)</h5>
 			</div>
 			<div class="card-body">
-				<div class="list-group list-group-flush">
-					<div class="list-group-item d-flex justify-content-between align-items-center">
-						Claims
-						<a href="#" class="btn btn-sm btn-outline-primary">View</a>
+				@if (Model.Documents.Count == 0)
+				{
+					<p class="text-muted">No Documents Uploaded</p>
+				}
+				else
+				{
+					<div class="list-group list-group-flush">
+						@foreach (var doc in Model.Documents)
+						{
+							<div class="list-group-item">
+								<div class="d-flex justify-content-between align-items-start">
+									<div class="flex-grow-1">
+										<strong> @doc.FileName</strong>
+										<small class="text-muted">
+											@doc.FileSize KB
+											@doc.UploadedDate.ToString("MM dd, yyyy")
+										</small>
+									</div>
+									<a href="/Books/DownloadDocument?bookId=@Model.Id&docId=@doc.Id"
+									   class="btn btn-sm btn-primary">
+										Download
+									</a>
+								</div>
+							</div>
+						}
 					</div>
-					<div class="list-group-item d-flex justify-content-between align-items-center">
-						Table of Contents
-						<a href="#" class="btn btn-sm btn-outline-primary">View</a>
-					</div>
-					<div class="list-group-item d-flex justify-content-between align-items-center">
-						Sample Chapter
-						<a href="#" class="btn btn-sm btn-outline-primary">View</a>
-					</div>
-				</div>
+				}
 			</div>
 		</div>
 	</div>
 
-</div>
+
+

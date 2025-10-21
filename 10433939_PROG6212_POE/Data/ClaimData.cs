@@ -10,6 +10,7 @@ namespace _10433939_PROG6212_POE.Data
     new Claim
     {
         Id = 1,
+        LecturerName = "Robert Moore",
         HoursWorked = 20,
         HourlyRate = 200,
         AdditionalNotes = "None.",
@@ -51,7 +52,6 @@ namespace _10433939_PROG6212_POE.Data
                 Id = _nextReviewId,
                 ClaimId = id,
                 ReviewerName = reviewedBy,
-                ReviewerRole = "Administrator",
                 ReviewDate = DateTime.Now,
                 Decision = newStatus,
                 Comments = comments

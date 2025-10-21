@@ -8,7 +8,7 @@
 <nav class="mb-4">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item"><a href="/Claims">My Claims</a></li>
+        <li class="breadcrumb-item"><a href="/Claims">Academic Coordinator</a></li>
         <li class="breadcrumb-item">Review</li>
     </ol>
 </nav>
@@ -28,9 +28,9 @@
                     {
                         <span class="badge bg-warning fs-6">⏳ Pending Review</span>
                     }
-                    else if (Model.Status == _10433939_PROG6212_POE.Models.ClaimStatus.Approved)
+                    else if (Model.Status == _10433939_PROG6212_POE.Models.ClaimStatus.Verified)
                     {
-                        <span class="badge bg-success fs-6">Approved</span>
+                        <span class="badge bg-success fs-6">Verified</span>
                     }
                     else
                     {
@@ -39,6 +39,10 @@
                 </div>
             </div>
             <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-sm-3"><strong>Lecturer Name</strong></div>
+                    <div class="col-sm-9">@Model.LecturerName</div>
+                </div>
                 <div class="row mb-3">
                     <div class="col-sm-3"><strong>Hours Worked</strong></div>
                     <div class="col-sm-9">@Model.HoursWorked</div>
@@ -62,17 +66,17 @@
                     <hr class="my-4">
                     <h5>Submit Your Review</h5>
 
-                    <form asp-action="Approve" method="post" class="mb-3">
+                    <form asp-action="Verify" method="post" class="mb-3">
                         @Html.AntiForgeryToken()
                         <input type="hidden" name="id" value="@Model.Id" />
 
                         <div class="mb-3">
-                            <label class="form-label">Approval Comments (Optional)</label>
-                            <textarea name="comments" class="form-control" rows="3" placeholder="Add any comments about why this claim is approved..."></textarea>
+                            <label class="form-label">Verification Comments (Optional)</label>
+                            <textarea name="comments" class="form-control" rows="3" placeholder="Add any comments about why this claim is verified..."></textarea>
                         </div>
 
                         <button type="submit" class="btn btn-success btn-lg">
-                            Approve Claim
+                            Verify Claim
                         </button>
                     </form>
 
@@ -89,7 +93,7 @@
                         <button type="submit" class="btn btn-danger btn-lg">
                             Decline Claim
                         </button>
-                        <a href="/Manager" class="btn btn-secondary btn-lg">Cancel</a>
+                        <a href="/Coordinator" class="btn btn-secondary btn-lg">Cancel</a>
                     </form>
                 }
             </div>

@@ -8,7 +8,7 @@
 <ul class="nav nav-bar mb-4">
 	<li class="nav-item">
 		<a class="nav-link @(ViewBag.Filter == "all" ? "active" : "")" href="/Manager?filter=all">
-			All Books (@Model.Count)
+			All Claims (@Model.Count)
 		</a>
 	</li>
 	<li class="nav-item">
@@ -19,6 +19,11 @@
 	<li class="nav-item">
 		<a class="nav-link @(ViewBag.Filter == "declined" ? "active" : "")" href="/Manager?filter=declined">
 			Declined (@ViewBag.DeclinedCount)
+		</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link @(ViewBag.Filter == "verified" ? "active" : "")" href="/Manager?filter=verified">
+			Verified (@ViewBag.VerifiedCount)
 		</a>
 	</li>
 	<li class="nav-item">
@@ -75,6 +80,10 @@
 								{
 									<span class="badge bg-success">Approved</span>
 								}
+								else if (@claim.Status == _10433939_PROG6212_POE.Models.ClaimStatus.Verified)
+								{
+									<span class="badge bg-success">Verified</span>
+								}
 								else
 								{
 									<span class="badge bg-danger">Declined</span>
@@ -83,7 +92,7 @@
 							<td>@claim.SubmittedDate</td>
 							<td>
 								<a href="/Manager/Review/@claim.Id" class="btn btn-primary">
-									@(claim.Status == _10433939_PROG6212_POE.Models.ClaimStatus.Pending ? "Review" : "View")
+									@(claim.Status == _10433939_PROG6212_POE.Models.ClaimStatus.Verified ? "Review" : "View")
 								</a>
 							</td>
 						</tr>

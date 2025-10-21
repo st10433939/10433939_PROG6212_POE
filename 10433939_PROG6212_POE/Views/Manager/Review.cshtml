@@ -26,11 +26,15 @@
                 <div>
                     @if (Model.Status == _10433939_PROG6212_POE.Models.ClaimStatus.Pending)
                     {
-                        <span class="badge bg-warning fs-6">⏳ Pending Review</span>
+                        <span class="badge bg-warning fs-6">Pending</span>
                     }
                     else if (Model.Status == _10433939_PROG6212_POE.Models.ClaimStatus.Approved)
                     {
                         <span class="badge bg-success fs-6">Approved</span>
+                    }
+                    else if (Model.Status == _10433939_PROG6212_POE.Models.ClaimStatus.Verified)
+                    {
+                        <span class="badge bg-success fs-6">Verified to be Reviewed</span>
                     }
                     else
                     {
@@ -39,6 +43,10 @@
                 </div>
             </div>
             <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-sm-3"><strong>Lecturer Name</strong></div>
+                    <div class="col-sm-9">@Model.LecturerName</div>
+                </div>
                 <div class="row mb-3">
                     <div class="col-sm-3"><strong>Hours Worked</strong></div>
                     <div class="col-sm-9">@Model.HoursWorked</div>
@@ -57,7 +65,7 @@
     <div class="col-lg-4">
         <div class="card">
             <div class="card-header">
-                @if (Model.Status == _10433939_PROG6212_POE.Models.ClaimStatus.Pending)
+                @if (Model.Status == _10433939_PROG6212_POE.Models.ClaimStatus.Verified)
                 {
                     <hr class="my-4">
                     <h5>Submit Your Review</h5>
