@@ -1,0 +1,47 @@
+﻿@model _10433939_PROG6212_POE.Models.Claim
+
+﻿@{
+	ViewBag.Title = "Add Claim";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+	<div class="col-lg-8 mc-auto">
+		<div class="card">
+			<div class="card-header">
+				<h3>New Claim</h3>
+			</div>
+			<div class="card-body">
+				<form asp-action="Add" method="post" enctype="multipart/form-data">
+					@Html.AntiForgeryToken()
+					<div class="mb-3">
+						<label asp-for="LecturerName" class="form-label">Lecturer Name</label>
+						<input asp-for="LecturerName" type="text" class="form-control" placeholder="Enter Lecturer Name" />
+					</div>
+					<div class="mb-3">
+						<label asp-for="HoursWorked" class="form-label">Hours Worked</label>
+						<input asp-for="HoursWorked" type="text" class="form-control" placeholder="Enter Hours Worked" />
+					</div>
+					<div class="mb-3">
+						<label asp-for="HourlyRate" class="form-label">Hourly Rate</label>
+						<input asp-for="HourlyRate" type="text" class="form-control" placeholder="Enter Hourly Rate" />
+					</div>
+					<div class="mb-3">
+						<label asp-for="AdditionalNotes" class="form-label">Additiona lNotes</label>
+						<input asp-for="AdditionalNotes" type="text" class="form-control" placeholder="Enter Additional Notes" />
+					</div>
+					<div class="mb-3">
+						<label class="form-label">Supporting Documents</label>
+						<input type="file" name="documents" class="form-control" accept=".pdf,.txt,.docx,.xlsx"></input>
+						<small class="form-text text-muted">Upload claim, table pof contents etc</small>
+					</div>
+
+					<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+						<a href="/Claims" class="btn btn-secondary me-md-2">Cancel</a>
+						<button type="submit" class="btn btn-primary">Add Claim</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
