@@ -52,10 +52,12 @@ Layout = "~/Views/Shared/_Layout.cshtml";
 					</div>
 					<div class="row mb-3">
 						<div class="col-sm-3"><strong>Additional Notes</strong></div>
-						<div class="col-sm-9">
-							@Model.AdditionalNotes
-						</div>
+						<div class="col-sm-9">@Model.AdditionalNotes</div>
 					</div>
+				<div class="row mb-3">
+					<div class="col-sm-3"><strong>Comments</strong></div>
+					<div class="col-sm-9">@Model.Comments</div>
+				</div>
 					<div"row mb-3">
 						<div class="col-sm-3"><strong>Submitted</strong></div>
 						<div class="col-sm-9">@Model.SubmittedDate.ToString("MM-dd-yyyy")</div>
