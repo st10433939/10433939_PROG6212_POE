@@ -1,19 +1,20 @@
 ﻿@model List<_10433939_PROG6212_POE.Models.Claim>
 
 @{
-	ViewBag.Title = "Program Coordinator";
+	ViewBag.Title = "Coordinator Dashboard";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<nav class="mb-4">
+<body class="text-bg-secondary">
+	<nav class="mb-4">
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item"><a href="/">Home</a></li>
-		<li class="breadcrumb-item active">Lecturers Claims</li>
+		<li class="breadcrumb-item active">Academic Coordinator</li>
 	</ol>
 </nav>
 <div class="d-flex justify-content-between align-items-center mb-4">
 	<h2>Academic Coordinator</h2>
 </div>
-
+</body>
 <ul class="nav nav-bar mb-4">
 	<li class="nav-item">
 		<a class="nav-link @(ViewBag.Filter == "all" ? "active" : "")" href="/Coordinator?filter=all">
@@ -60,8 +61,8 @@
 						<th>Lecturer Name</th>
 						<th>Hours Worked</th>
 						<th>Hourly Rate</th>
-						<th>Status</th>
 						<th>Submitted Date</th>
+						<th>Status</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
@@ -73,7 +74,6 @@
 							<td>@claim.LecturerName</td>
 							<td>@claim.HoursWorked</td>
 							<td>@claim.HourlyRate</td>
-							<td>@claim.SubmittedBy</td>
 							<td>@claim.SubmittedDate</td>
 							<td>
 								@if (@claim.Status == _10433939_PROG6212_POE.Models.ClaimStatus.Pending)
@@ -89,7 +89,6 @@
 									<span class="badge bg-danger">Declined</span>
 								}
 							</td>
-							<td>@claim.SubmittedDate</td>
 							<td>
 								<a href="/Coordinator/Review/@claim.Id" class="btn btn-primary">
 									@(claim.Status == _10433939_PROG6212_POE.Models.ClaimStatus.Pending ? "Review" : "View")

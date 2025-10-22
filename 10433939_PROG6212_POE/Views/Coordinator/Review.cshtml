@@ -4,15 +4,15 @@
     ViewBag.Title = "Review";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<body class="text-bg-secondary">
 <nav class="mb-4">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item"><a href="/Claims">Academic Coordinator</a></li>
+        <li class="breadcrumb-item"><a href="/Coordinator">Academic Coordinator</a></li>
         <li class="breadcrumb-item">Review</li>
     </ol>
 </nav>
-
+</body>
 @if (TempData["Error"] != null)
 {
     <div class="alert alert-danger"> @TempData["Error"]</div>
@@ -22,7 +22,7 @@
     <div class="col-lg-8">
         <div class="card">
             <div class="card-header d-flex">
-                <h4>@Model.LecturerName</h4>
+                <h4>Claim ID: @Model.Id </h4>
                 <div>
                     @if (Model.Status == _10433939_PROG6212_POE.Models.ClaimStatus.Pending)
                     {

@@ -19,12 +19,14 @@ namespace _10433939_PROG6212_POE.Controllers
                     "pending" => ClaimData.GetClaimsByStatus(ClaimStatus.Pending),
                     "approved" => ClaimData.GetClaimsByStatus(ClaimStatus.Approved),
                     "declined" => ClaimData.GetClaimsByStatus(ClaimStatus.Declined),
+                    "verified" => ClaimData.GetClaimsByStatus(ClaimStatus.Verified),
                     _ => claims
                 };
 
                 ViewBag.PendingCount = ClaimData.GetPendingCount();
                 ViewBag.ApprovedCount = ClaimData.GetApprovedCount();
                 ViewBag.DeclinedCount = ClaimData.GetDeclinedCount();
+                ViewBag.VerifiedCount = ClaimData.GetVerifiedCount();
 
                 return View(claims);
             }

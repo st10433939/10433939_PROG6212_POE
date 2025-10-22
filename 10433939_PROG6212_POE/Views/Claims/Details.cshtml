@@ -2,15 +2,15 @@
 ViewBag.Title = "Claim Details";
 Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<nav class="mb-4">
+<body class="text-bg-secondary">
+	<nav class="mb-4">
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item"><a href="/">Home</a></li>
-		<li class="breadcrumb-item"><a href="/Claims">My Claims</a></li>
+		<li class="breadcrumb-item"><a href="/Claims">Claims</a></li>
 		<li class="breadcrumb-item active">Claim Details</li>
 	</ol>
 </nav>
-
+</body>
 @if (TempData["Error"] != null)
 {
 	<div class="alert alert-danger">@TempData["Error"]</div>
@@ -19,7 +19,7 @@ Layout = "~/Views/Shared/_Layout.cshtml";
 		<div class="col-lg-8">
 			<div class="card">
 				<div class="card-header d-flex justify-content-between">
-					<h4>@Model.LecturerName</h4>
+					<h4>Claim ID: @Model.Id </h4>
 					@if (Model.Status == _10433939_PROG6212_POE.Models.ClaimStatus.Pending)
 					{
 						<span class="badge bg-warning">Pending Review</span>
