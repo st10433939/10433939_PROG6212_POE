@@ -70,7 +70,7 @@ namespace _10433939_PROG6212_POE.Tests
                 if(File.Exists(tempFile)) File.Delete(tempFile);
             }
         }
-
+        [Fact]
         public async Task Test3_DecryptFile_Successful()
         {
             //Create and encrypt file
@@ -95,6 +95,68 @@ namespace _10433939_PROG6212_POE.Tests
             {
                 if (File.Exists(tempFile)) File.Delete(tempFile);
             }
+        }
+        [Fact]
+        public void Test4_ApproveClaim()
+        {
+            var newClaim = new Claim
+            {
+                LecturerName = "John Pork",
+                HoursWorked = 12,
+                HourlyRate = 250,
+                AdditionalNotes = "No notes."
+            };
+            //Action
+            ClaimData.AddClaim(newClaim);
+
+            //Action
+            var success = ClaimData.UpdateClaimStatus(newClaim.Id, ClaimStatus.Approved, "Manager", "Claim approved, good quality.");
+            Assert.True(success, "Update should succeed");
+            var updateClaim = ClaimData.GetClaimById(newClaim.Id);
+            Assert.Equal(ClaimStatus.Approved, updateClaim.Status);
+            Assert.Equal("Manager", updateClaim.ReviewedBy);
+        }
+
+        [Fact]
+        public void Test5_DeclineClaim()
+        {
+            var newClaim = new Claim
+            {
+                LecturerName = "John Pork",
+                HoursWorked = 12,
+                HourlyRate = 250,
+                AdditionalNotes = "No notes."
+            };
+            //Action
+            ClaimData.AddClaim(newClaim);
+
+            //Action
+            var success = ClaimData.UpdateClaimStatus(newClaim.Id, ClaimStatus.Declined, "Manager", "Claim declined, not enough support from documents.");
+            Assert.True(success, "Update should succeed");
+            var updateClaim = ClaimData.GetClaimById(newClaim.Id);
+            Assert.Equal(ClaimStatus.Declined, updateClaim.Status);
+            Assert.Equal("Manager", updateClaim.ReviewedBy);
+        }
+
+        [Fact]
+        public void Test6_VerifyClaim()
+        {
+            var newClaim = new Claim
+            {
+                LecturerName = "John Pork",
+                HoursWorked = 12,
+                HourlyRate = 250,
+                AdditionalNotes = "No notes."
+            };
+            //Action
+            ClaimData.AddClaim(newClaim);
+
+            //Action
+            var success = ClaimData.UpdateClaimStatus(newClaim.Id, ClaimStatus.Verified, "Coordinator", "Claim verified, adequate.");
+            Assert.True(success, "Update should succeed");
+            var updateClaim = ClaimData.GetClaimById(newClaim.Id);
+            Assert.Equal(ClaimStatus.Verified, updateClaim.Status);
+            Assert.Equal("Manager", updateClaim.ReviewedBy);
         }
     }
 }
