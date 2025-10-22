@@ -12,21 +12,22 @@ namespace _10433939_PROG6212_POE.Tests
         public void Test1_AddClaim_Successful()
         {
             //Create new
-            var initialCount = ClaimData.GetAllClaims().Count;
+            var initialCount = ClaimData.GetAllClaims().Count();
 
             var newClaim = new Claim
             {
-                LecturerName = "John Pork",
+                LecturerName = "Robert Moore",
                 HoursWorked = 12,
                 HourlyRate = 250,
-                AdditionalNotes = "No notes."
+                AdditionalNotes = "No notes.",
+                SubmittedBy = "Test User"
             };
             //Action
             ClaimData.AddClaim(newClaim);
 
             //New count
-            var newCount = ClaimData.GetAllClaims().Count;
-            Assert.Equal(initialCount +1, newCount);
+            var newCount = ClaimData.GetAllClaims().Count();
+            Assert.Equal(initialCount+1, newCount);
 
             Assert.True(newClaim.Id > 0, "Claim should have assigned Id.");
 
@@ -156,7 +157,7 @@ namespace _10433939_PROG6212_POE.Tests
             Assert.True(success, "Update should succeed");
             var updateClaim = ClaimData.GetClaimById(newClaim.Id);
             Assert.Equal(ClaimStatus.Verified, updateClaim.Status);
-            Assert.Equal("Manager", updateClaim.ReviewedBy);
+            Assert.Equal("Coordinator", updateClaim.ReviewedBy);
         }
     }
 }
