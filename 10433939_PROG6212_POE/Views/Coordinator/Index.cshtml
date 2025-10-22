@@ -36,6 +36,11 @@
 			Verified (@ViewBag.VerifiedCount)
 		</a>
 	</li>
+	<li class="nav-item">
+		<a class="nav-link @(ViewBag.Filter == "approved" ? "active" : "")" href="/Manager?filter=approved">
+			Approved (@ViewBag.ApprovedCount)
+		</a>
+	</li>
 </ul>
 <!--Nav to filter tables-->
 <ul class="nav nav-tabs">
@@ -83,6 +88,10 @@
 								else if (@claim.Status == _10433939_PROG6212_POE.Models.ClaimStatus.Verified)
 								{
 									<span class="badge bg-success">Verified</span>
+								}
+								else if (@claim.Status == _10433939_PROG6212_POE.Models.ClaimStatus.Approved)
+								{
+									<span class="badge bg-success">Approved</span>
 								}
 								else
 								{
