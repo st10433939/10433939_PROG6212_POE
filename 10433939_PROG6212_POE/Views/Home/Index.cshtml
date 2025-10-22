@@ -2,10 +2,10 @@
 ViewData["Title"] = "Home Page";
 Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<body class="bg-secondary">
 <div ="row">
     <div class="text-center">
-        <h1 class="display-4">
+        <h1 class="display-4 text-light">
             Contract Monthly Claim System
         </h1>
     </div>
@@ -13,37 +13,38 @@ Layout = "~/Views/Shared/_Layout.cshtml";
 
 <!--Card Section-->
 <div class="row">
-    <div class="card">
+    <div class="card border-5">
         <div class="card-body text-center">
             <h3 class="card-title">
                 Lecturer
             </h3>
             <p class="card-text">
-                Use this button to continue as a Lecturer
+                Continue as a Lecturer to create a claim
             </p>
-            <a href="/Claims" class="btn btn-primary">Lecturer</a>
+            <a href="/Claims" class="btn btn-outline-primary">Lecturer</a>
         </div>
     </div>
-    <div class="card">
+        <div class="card border-5">
         <div class="card-body text-center">
             <h3 class="card-title">
                 Academic Coordinator
             </h3>
             <p class="card-text">
-                Use this button to continue as an Academic Coordinator
+                Continue as an Academic Coordinator to verify claims
             </p>
-            <a href="/Coordinator" class="btn btn-primary">Coordinator</a>
+            <a href="/Coordinator" class="btn btn-outline-primary">Coordinator</a>
         </div>
     </div>
-    <div class="card">
+        <div class="card border-5">
         <div class="card-body text-center">
             <h3 class="card-title">
                 Programme Manager
             </h3>
             <p class="card-text">
-                Use this button to continue if as a Programme Manager
+                Continue as a Programme Manager to approve claims
             </p>
-            <a href="/Manager" class="btn btn-primary">Manager</a>
+            <a href="/Manager" class="btn btn-outline-primary">Manager</a>
         </div>
     </div>
 </div>
+</body>

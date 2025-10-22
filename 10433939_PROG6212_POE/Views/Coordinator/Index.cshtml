@@ -4,6 +4,15 @@
 	ViewBag.Title = "Program Coordinator";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<nav class="mb-4">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a href="/">Home</a></li>
+		<li class="breadcrumb-item active">Lecturers Claims</li>
+	</ol>
+</nav>
+<div class="d-flex justify-content-between align-items-center mb-4">
+	<h2>Academic Coordinator</h2>
+</div>
 
 <ul class="nav nav-bar mb-4">
 	<li class="nav-item">
@@ -61,7 +70,7 @@
 					@foreach (var claim in Model)
 					{
 						<tr>
-							<td><strong>@claim.LecturerName</strong></td>
+							<td>@claim.LecturerName</td>
 							<td>@claim.HoursWorked</td>
 							<td>@claim.HourlyRate</td>
 							<td>@claim.SubmittedBy</td>
