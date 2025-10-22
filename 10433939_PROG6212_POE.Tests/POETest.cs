@@ -9,7 +9,7 @@ namespace _10433939_PROG6212_POE.Tests
     public class POETest
     {
         [Fact]
-        public void Test1_AddBook_Successful()
+        public void Test1_AddClaim_Successful()
         {
             //Create new
             var initialCount = ClaimData.GetAllClaims().Count;
@@ -71,5 +71,30 @@ namespace _10433939_PROG6212_POE.Tests
             }
         }
 
+        public async Task Test3_DecryptFile_Successful()
+        {
+            //Create and encrypt file
+            var originalContent = "This is a secret document.";
+            var inputStream = new MemoryStream(Encoding.UTF8.GetBytes(originalContent));
+            var tempFile = Path.GetTempFileName();
+            var encryptionService = new FileEncryptionService();
+
+            try
+            {
+                //encrypt
+                await encryptionService.EncryptFileAsync(inputStream, tempFile);
+                //Decrypt
+                var decryptedStream = await encryptionService.DecryptFileAsync(tempFile);
+                var decryptedContent = Encoding.UTF8.GetString(decryptedStream.ToArray());
+
+                //Verify decrypted content matched original
+                Assert.Equal(originalContent, decryptedContent);
+                Assert.Contains(originalContent, decryptedContent);
+            }
+            finally
+            {
+                if (File.Exists(tempFile)) File.Delete(tempFile);
+            }
+        }
     }
 }
