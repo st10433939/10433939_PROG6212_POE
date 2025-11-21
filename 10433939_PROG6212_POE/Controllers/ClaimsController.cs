@@ -39,23 +39,33 @@ namespace _10433939_PROG6212_POE.Controllers
         //Post /Claims/Add - Add form data to the datastore
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Add(Claim claim, List<IFormFile> documents)
+        public async Task<IActionResult> Add(Claim claim, List<IFormFile> documents, Lecturer lecturer)
         {
             try
             {
                 if (string.IsNullOrEmpty(claim.LecturerName))
                 {
-                    ViewBag.Error = "Claim lecturer is required.";
+                    ModelState.AddModelError("", "Lecturer Required.");
                     return View(claim);
                 }
                 if (string.IsNullOrEmpty(claim.HoursWorked.ToString()))
                 {
-                    ViewBag.Error = "Claim hours required.";
+                    ModelState.AddModelError("", "Claim Hours Required.");
+                    return View(claim);
+                }
+                if (claim.HoursWorked > 180)
+                {
+                    ModelState.AddModelError("", "Hours Exceed Limit.");
+                    return View(claim);
+                }
+                if (claim.HoursWorked <= 0)
+                {
+                    ModelState.AddModelError("", "Hours Invalid as they are too Low.");
                     return View(claim);
                 }
                 if (string.IsNullOrEmpty(claim.HourlyRate.ToString()))
                 {
-                    ViewBag.Error = "Claim rate required.";
+                    ModelState.AddModelError("", "Claim Rate Required.");
                     return View(claim);
                 }
                 if (documents != null && documents.Count > 0)
@@ -69,7 +79,7 @@ namespace _10433939_PROG6212_POE.Controllers
 
                             if (!allowedExtensions.Contains(extension))
                             {
-                                ViewBag.Error = $"File extension {extension} not allowed.";
+                                ModelState.AddModelError("", $"File extension {extension} not allowed.");
                                 return View(claim);
                             }
 
@@ -102,7 +112,7 @@ namespace _10433939_PROG6212_POE.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag["Error"] = "Error handling claim" + ex.Message;
+                ModelState.AddModelError("", $"File extension {ex.Message} not allowed.");
                 return View(claim);
             }
         }

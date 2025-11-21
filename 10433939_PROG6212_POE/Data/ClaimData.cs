@@ -5,20 +5,7 @@ namespace _10433939_PROG6212_POE.Data
 {
     public class ClaimData
     {
-        private static List<Claim> _claims = new List<Claim>()
-{
-    new Claim
-    {
-        Id = 1,
-        LecturerName = "Robert Moore",
-        HoursWorked = 20,
-        HourlyRate = 200,
-        AdditionalNotes = "None.",
-        SubmittedDate = DateTime.Now.AddDays(-5),
-        Status = ClaimStatus.Pending,
-        Documents = new List<UploadedDocument>()
-    }
-};
+        private static List<Claim> _claims = new List<Claim>(){};
 
         private static int _nextId = 4;
         private static int _nextReviewId = 1;
@@ -35,6 +22,7 @@ namespace _10433939_PROG6212_POE.Data
         {
             claim.Id = _nextId;
             _nextId++;
+            claim.Balance = claim.HourlyRate * claim.HoursWorked;
             claim.SubmittedDate = DateTime.Now;
             claim.Status = ClaimStatus.Pending;
             _claims.Add(claim);

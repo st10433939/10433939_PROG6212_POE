@@ -76,9 +76,9 @@
 					@foreach (var claim in Model)
 					{
 						<tr>
-							<td>@claim.LecturerName</td>
+							<td>@claim.lecturers.LecturerName</td>
 							<td>@claim.HoursWorked</td>
-							<td>@claim.HourlyRate</td>
+							<td>@claim.lecturers.HourlyRate</td>
 							<td>@claim.SubmittedDate</td>
 							<td>
 								@if (@claim.Status == _10433939_PROG6212_POE.Models.ClaimStatus.Pending)

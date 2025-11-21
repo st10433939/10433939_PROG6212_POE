@@ -1,4 +1,5 @@
 ﻿@model _10433939_PROG6212_POE.Models.Claim
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 ﻿@{
 	ViewBag.Title = "Add Claim";
@@ -22,10 +23,10 @@
 						<label asp-for="HoursWorked" class="form-label">Hours Worked</label>
 						<input asp-for="HoursWorked" type="text" class="form-control" placeholder="Enter Hours Worked" />
 					</div>
-					<div class="mb-3">
-						<label asp-for="HourlyRate" class="form-label">Hourly Rate</label>
-						<input asp-for="HourlyRate" type="text" class="form-control" placeholder="Enter Hourly Rate" />
-					</div>
+						<div class="mb-3">
+							<label asp-for="HourlyRate" class="form-label">Hourly Rate</label>
+							<input asp-for="HourlyRate" type="text" class="form-control" placeholder="Enter Hourly Rate" />
+						</div>
 					<div class="mb-3">
 						<label asp-for="AdditionalNotes" class="form-label">Additiona lNotes</label>
 						<input asp-for="AdditionalNotes" type="text" class="form-control" placeholder="Enter Additional Notes" />

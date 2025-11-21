@@ -1,0 +1,51 @@
+﻿@model List<_10433939_PROG6212_POE.Models.Lecturer>
+
+﻿@{
+	ViewBag.Title = "Lecturers";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<body class="text-bg-secondary">
+	<nav class="mb-4">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="/">Home</a></li>
+			<li class="breadcrumb-item active">HR</li>
+		</ol>
+	</nav>
+	<div class="d-flex justify-content-between align-items-center mb-4">
+		<h2>Lecturers</h2>
+		<a href="/HR/AddLecturer" class="btn btn-primary"> + Add New Lecturer </a>
+	</div>
+</body>
+<!--Claim Table-->
+<div class="card">
+	<div class="card-body">
+		@if (Model.Count == 0)
+		{
+			<div class="text-center py5">
+				<p class="text-muted">No Lecturers entered yet.</p>
+				<a href="/HR/AddLecturer" class="btn btn-primary">Add Lecturer</a>
+			</div>
+		}
+		else
+		{
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Lecturer Name</th>
+						<th>Hourly Rate</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var lecturer in Model)
+					{
+						<tr>
+							<td>@lecturer.LecturerName</td>
+							<td>@lecturer.HourlyRate</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		}
+
+	</div>
+</div>
