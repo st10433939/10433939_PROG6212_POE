@@ -1,6 +1,63 @@
-Commits from initial code here:
-https://github.com/st10433939/10433939_PROG6212_POE_P1 
+Youtube video:
+https://youtu.be/sxGVk8x47_E
 
-Started new repo as there was an unknown error in the previous code that made it unable to be run.
-YouTube video on Claim system going through each aspect: 
-https://youtu.be/3_OcpCly-TU
+Database:
+
+USE master;
+GO
+
+--Drop DB if already existing
+IF EXISTS (SELECT name FROM sys.databases WHERE name = 'st10433939DB')
+BEGIN
+	ALTER DATABASE st10433939DB SET SINGLE_USER WITH ROLLBACK IMMEDIATE
+	DROP DATABASE st10433939DB;
+END
+GO
+--Create the DB
+CREATE DATABASE st10433939DB;
+GO
+
+USE st10433939DB;
+GO
+
+--Create Tables
+CREATE TABLE Lecturer(
+LecturerId INT PRIMARY KEY IDENTITY(1,1),
+LecturerName VARCHAR(100) NOT NULL,
+HourlyRate INT NOT NULL
+);
+
+
+CREATE TABLE Claim (
+Id INT PRIMARY KEY IDENTITY(1,1),
+LecturerName VARCHAR(255) NOT NULL,
+HoursWorked INT NOT NULL,
+HourlyRate INT NOT NULL,
+Balance INT NOT NULL,
+AdditionalNotes VARCHAR(MAX) NULL,
+SubmittedDate DATETIME DEFAULT GETDATE(),
+SubmittedBy VARCHAR(50) NOT NULL,
+Status VARCHAR(50) DEFAULT 'Pending',
+ReviewedBy VARCHAR(50) NOT NULL,
+Comments VARCHAR(MAX) NULL,
+ReviewedDate DATETIME NOT NULL,
+);
+
+CREATE TABLE ClaimReview (
+Id INT PRIMARY KEY IDENTITY(1,1),
+ClaimId INT NOT NULL,
+ReviewerName VARCHAR(50) NOT NULL,
+ReviewerRole VARCHAR(50) NOT NULL,
+ReviewDate DATETIME NOT NULL,
+Decision VARCHAR(50) NOT NULL,
+FOREIGN KEY (ClaimId) REFERENCES Claim(Id)
+);
+
+CREATE TABLE UploadedDocument(
+Id INT PRIMARY KEY IDENTITY(1,1),
+FileName VARCHAR(225) NOT NULL,
+FilePath VARCHAR(500) NOT NULL,
+FileSize BIGINT DEFAULT 1,
+UploadedDate DATETIME DEFAULT GETDATE()
+);
+
