@@ -1,9 +1,20 @@
+using Microsoft.EntityFrameworkCore;
+using _10433939_PROG6212_POE.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+// Add Database Context
+/*builder.Services.AddDbContext<_10433939DbContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        sqlOptions => sqlOptions.EnableRetryOnFailure()
+    )
+);*/
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
